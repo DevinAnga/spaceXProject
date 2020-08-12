@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-class MyComponent extends React.Component {
+class ApiCall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      items: [],
+      flights: [],
     };
   }
 
@@ -17,12 +17,9 @@ class MyComponent extends React.Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result,
+            flights: result,
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -33,23 +30,23 @@ class MyComponent extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, flights } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
-          { items.map((item) => (
-            <li key={item.flight_number}>
-              {item.mission_name} {item.launch_year}
-            </li>
+        <div>
+          { flights.map((flight) => (
+            <div>
+              {JSON.stringify(flight)}
+            </div>
           ))}  
-        </ul>
+        </div>
       );
     }
   }
 }
 
-export default <MyComponent />;
+export default <ApiCall />;
