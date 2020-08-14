@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ApiCall extends React.Component {
+class LaunchList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,4 +49,4 @@ class ApiCall extends React.Component {
   }
 }
 
-export default <ApiCall />;
+export default LaunchList;
